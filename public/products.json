@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "title": "Cherry",
+    "condition": "Fresh",
+    "description": "Two Cherries",
+    "filename": "https://d27ucmmhxk51xv.cloudfront.net/media/english/illustration/cherries.jpg",
+    "price": 1.99,
+    "colors": ["red", "cyan", "blue"]
+  },
+  {
+    "id": "2",
+    "title": "Orange",
+    "condition": "Frozen",
+    "description": "Giant Orange",
+    "filename": "https://img1.exportersindia.com/product_images/bc-full/2019/7/6458641/fresh-orange-1564033295-5014658.jpeg",
+    "price": 2.99,
+    "colors": ["cyan", "blue"]
+  },
+  {
+    "id": "3",
+    "title": "Nuts",
+    "condition": "Frozen",
+    "description": "Mixed Nuts",
+    "filename": "https://nuts.com/images/auto/801x534/assets/11e396e470741b57.jpg",
+    "price": 1.0,
+    "colors": ["red"]
+  },
+  {
+    "id": "4",
+    "title": "Strawberry",
+    "condition": "Fresh",
+    "description": "Just Strawberry",
+    "filename": "https://5.imimg.com/data5/CK/LM/MY-46960546/fresh-red-strawberry-500x500.jpg",
+    "price": 1.49,
+    "colors": ["blue"]
+  }
+]

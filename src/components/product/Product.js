@@ -2,23 +2,21 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardActions from '@material-ui/core/CardActions';
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-// import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
+import clsx from "clsx";
 
 const useStyles = makeStyles({
   card: {
     maxWidth: 345
   },
   media: {
-    height: 140
+    height: 200
   },
   price: {
-    color: "#3aaf53"
+    color: "#0ab5b5"
   },
 
   actionArea: {
@@ -31,11 +29,10 @@ const useStyles = makeStyles({
       padding: 5,
       transition: "0.2s",
       zIndex: 1
-      // background: 'transparent',
     }
   },
   focusHighlight: {
-    background: "#46f946"
+    background: "#3dd2c4"
   },
   imageButton: {
     position: "absolute",
@@ -44,32 +41,22 @@ const useStyles = makeStyles({
     color: "#fff",
     opacity: 0,
     alignItems: "center",
-    justifyContent: "center",
-    "&:hover": {
-      background: "#fff",
-      color: "#1dab1d"
-    }
-  }
+    justifyContent: "center"
+  },
+  active: { background: "#b9e4f5" }
 });
 
 const Product = props => {
   const classes = useStyles();
   const { id, title, description, filename, price } = props.product;
-  const preventDefault = event => event.preventDefault();
   const [isCompared, setCompared] = useState(false);
 
   const handleCompare = id => {
     setCompared(!isCompared);
     props.getComparedProducts(id);
   };
-  // console.log(props)
   return (
-    <Card
-      className={classes.card}
-      style={
-        isCompared ? { background: "#b4f5b4", border: "1px solid #a1f7a1" } : {}
-      }
-    >
+    <Card className={clsx(classes.card, isCompared && classes.active)}>
       <CardActionArea
         classes={{
           root: classes.actionArea,
@@ -90,9 +77,7 @@ const Product = props => {
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="body1" component="h2">
-                <Link href="#" onClick={preventDefault}>
-                  {title}
-                </Link>
+                {title}
               </Typography>
               <Typography
                 gutterBottom
@@ -111,15 +96,6 @@ const Product = props => {
           </Grid>
         </Grid>
       </CardContent>
-
-      {/* <CardActions>
-                <Button size="small" color="primary">
-                    Share
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
-                </Button>
-            </CardActions> */}
     </Card>
   );
 };

@@ -1,59 +1,57 @@
-import React, { Component } from 'react'
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import * as products from '../../products.json'
-import Product from '../../components/product/Product'
-import ComparedItems from '../../components/product/ComparedItems'
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import Grid from "@material-ui/core/Grid";
+
+import Product from "../../components/product/Product";
+import ComparedItems from "../../components/product/ComparedItems";
+
+import * as actions from "../../store/index";
 
 class Products extends Component {
-    state = {
-        products: [],
-        comparedItems: []
-    }
-
-    componentDidMount() {
-        // console.log(products.default)
-        this.setState({ products: products.default })
-    }
-    getComparedProducts = (productId) => {
-        const { comparedItems, products } = this.state;
-        const isItemExist = comparedItems.filter(item => item.id === productId)
-        if (isItemExist.length) {
-            const filteredItems = comparedItems.filter(item => item.id !== productId)
-            this.setState({ comparedItems: filteredItems });
-        } else {
-            const currProduct = products.filter(item => item.id === productId)[0]
-            this.setState({ comparedItems: [...comparedItems, currProduct] });
-        }
-    }
-    render() {
-        const { products, comparedItems } = this.state
-        return (
-            <Container maxWidth="lg">
-                {/* <h1>Products</h1> */}
-                <Typography variant="h4" gutterBottom component="h1">
-                    Test
-                </Typography>
-                <Grid container spacing={3}>
-                    {
-                        products.map(product => {
-                            return (
-                                <Grid item key={product.id} xs={6} sm={3}>
-                                    <Product
-                                        product={product}
-                                        getComparedProducts={this.getComparedProducts} />
-                                </Grid>
-                            )
-                        })
-                    }
-                </Grid>
-                {comparedItems.length >= 2 && <ComparedItems comparedItems={comparedItems} />}
-
-
-
-            </Container >
-        )
-    }
+  componentDidMount() {
+    this.props.getProducts();
+  }
+  getComparedProducts = productId => {
+    this.props.getComparedProducts(productId);
+  };
+  render() {
+    const { products, comparedItems, loading } = this.props;
+    let loadingSpin = "";
+    if (loading) loadingSpin = <div>Loading...</div>;
+    return (
+      <Fragment>
+        {loadingSpin}
+        <Grid container spacing={3}>
+          {products.map(product => {
+            return (
+              <Grid item key={product.id} xs={6} sm={3}>
+                <Product
+                  product={product}
+                  getComparedProducts={this.getComparedProducts}
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
+        {comparedItems.length >= 2 && (
+          <ComparedItems comparedItems={comparedItems} />
+        )}
+      </Fragment>
+    );
+  }
 }
-export default Products
+const mapStateToProps = state => {
+  return {
+    products: state.products,
+    comparedItems: state.comparedItems,
+    loading: state.loading
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    getProducts: () => dispatch(actions.getProducts()),
+    getComparedProducts: productId =>
+      dispatch(actions.getComparedProducts(productId))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
