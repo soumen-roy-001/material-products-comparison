@@ -1,0 +1,33 @@
+[{
+  "id": "1",
+  "title": "Brown eggs",
+  "type": "dairy",
+  "description": "Raw organic brown eggs in a basket",
+  "filename": "https://material-ui.com/static/images/grid/complex.jpg",
+  "price": 28.1,
+  "colors": ["brown"]
+}, {
+  "id": "2",
+  "title": "Sweet fresh stawberry",
+  "type": "fruit",
+  "description": "Sweet fresh stawberry on the wooden table",
+  "filename": "https://material-ui.com/static/images/grid/complex.jpg",
+  "price": 30,
+  "colors": ["red", "pink"]
+}, {
+  "id": "3",
+  "title": "Asparagus",
+  "type": "vegetable",
+  "description": "Asparagus with ham on the wooden table",
+  "filename": "https://material-ui.com/static/images/grid/complex.jpg",
+  "price": 22,
+  "colors": ["green", "white", "red"]
+}, {
+  "id": "4",
+  "title": "Green smoothie",
+  "type": "dairy",
+  "description": "Glass of green smoothie with quail egg's yolk, served with cocktail tube, green apple and baby spinach leaves over tin surface.",
+  "filename": "https://material-ui.com/static/images/grid/complex.jpg",
+  "price": 12,
+  "colors": ["green"]
+}]
